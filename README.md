@@ -1,24 +1,18 @@
-# README
+# Mello
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Kanban board Trello clone that utilizes Javascript and jQuery to employ features such as authentication, board creation, drag-and-drop, modals, and contributor management.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+1. Install Ruby 2.5.3. (https://github.com/rbenv/rbenv#installation) and then to [install Ruby 2.5.3](https://github.com/rbenv/rbenv#installing-ruby-versions)).
+2. Install Bundler to manager dependencies: `$ bundle install`
+3. Setup the database: `$ bundle exec rake db:migrate`
+4. Start the server: `$ bundle exec rails server`
 
-* System dependencies
+## Usage
 
-* Configuration
+## Live Demo
 
-* Database creation
+The project is currently hosted here: [Live Demo](https://mello-becky-briggs.herokuapp.com/)
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Screenshots
