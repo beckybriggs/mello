@@ -41,6 +41,16 @@ function getBoard(id) {
     });
 }
 
+function handleLogout() {
+  $.ajax({
+    url: '/logout',
+    method: 'DELETE'
+  }).then(function() {
+    localStorage.clear();
+    location.replace('/');
+  });
+}
+
 function createCards(list) {
   let $cardUl = $('<ul>');
 
@@ -108,27 +118,6 @@ function renderBoard() {
 
 function renderContributors() {
   let $contributorListItems = board.users.map(function(user) {
-    let $contributorListItem = $('<li>').text(user.email);
-    return $contributorListItem;
-  });
-
-  $contributorModalList.empty();
-  $contributorModalList.append($contributorListItems);
-}
-function renderBoard() {
-  let $lists = createLists(board.lists);
-
-  $boardName.text(board.name);
-
-  $boardContainer.empty();
-  $boardContainer.append($lists);
-
-  makeSortable();
-  renderContributors();
-}
-
-function renderContributors() {
-  let $contributorListItems = board.users.map(function(user) {
     let $contributorListItem = $('<li>');
     let $contributorSpan = $('<span>').text(user.email);
     let $contributorDeleteButton = $('<button class="danger">Remove</button>')
@@ -146,10 +135,10 @@ function renderContributors() {
 
 function makeSortable() {
   Sortable.create($boardContainer[0], {
-    animation: 150,
+    animation: 600,
     ghostClass: 'ghost',
     filter: '.add',
-    easing: 'cubic-bezier(0.785, 0.135, 0.15, 0.86)',
+    easing: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',
     onMove: function(event) {
       let shouldMove = !$(event.related).hasClass('add');
       return shouldMove;
@@ -176,9 +165,9 @@ function makeSortable() {
 
   $('.list > ul').each(function(index, element) {
     Sortable.create(element, {
-      animation: 150,
+      animation: 600,
       ghostClass: 'ghost',
-      easing: 'cubic-bezier(0.785, 0.135, 0.15, 0.86)',
+      easing: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',
       group: 'shared',
       onEnd: function(event) {
         let { id, position, list_id } = $(event.item)
@@ -205,16 +194,6 @@ function makeSortable() {
         });
       }
     });
-  });
-}
-
-function handleLogout() {
-  $.ajax({
-    url: '/logout',
-    method: 'DELETE'
-  }).then(function() {
-    localStorage.clear();
-    location.replace('/');
   });
 }
 
